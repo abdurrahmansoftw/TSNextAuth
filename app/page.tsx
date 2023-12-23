@@ -8,6 +8,7 @@ export default function Home() {
       <Link href="/about">
         practice
       </Link>
+      <ProductCard />
     </main>
   )
 }
