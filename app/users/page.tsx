@@ -1,6 +1,7 @@
 interface User {
     id: number;
     name: string;
+    email: string;
 }
 
 
@@ -12,12 +13,25 @@ const UsersPage = async () => {
     return (
         <>
         <h1>Userlist</h1>
-        <p>{new Date().toLocaleTimeString()}</p>
-            <ol>
+            <table className="table table-bordered ">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>email</th>
+                    </tr>
+                </thead>
+                <tbody>
                 {users.map((user) => (
-                    <li key={user.id}>{user.name}</li>
+                    <tr key={user.id}>
+                        <td>{user.id}</td>
+                        <td>{user.name}</td>
+                        <td>{user.email}</td>
+                    </tr>
                 ))}
-            </ol>
+                </tbody>
+               
+            </table>
         </>
     );
 };
