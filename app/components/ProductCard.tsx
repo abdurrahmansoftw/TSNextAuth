@@ -1,9 +1,8 @@
-import AddToCart from "./AddToCart";
 
 const ProductCard = () => {
     return (
         <div>
-            <AddToCart />
+            <h1>ProductCard</h1>
         </div>
     );
 };

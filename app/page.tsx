@@ -1,12 +1,11 @@
 import Link from "next/link";
-import ProductCard from "./components/ProductCard";
+import UsersPage from "./users/page";
 
 export default function Home() {
   return (
     <main>
-      <h1>hello akaid</h1>
-       <Link href="/users">users </Link>
-       <ProductCard />
-      </main>
+      <Link href='/users'>Users</Link>
+      <UsersPage />
+    </main>
   )
 }
