@@ -13,6 +13,6 @@ export async function POST(request: NextRequest) {
     // if invalid, return NextResponse.json({error: "Invalid body"}, {status: 400})
     if (!body.name)
         return NextResponse.json({ error: "Name is required" }, { status: 400 });
-    
+
     return NextResponse.json({id: 3, name: body.name});
 }
