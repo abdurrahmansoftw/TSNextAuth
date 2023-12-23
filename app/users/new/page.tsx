@@ -1,8 +1,13 @@
+'use client'
+
+import { useRouter } from "next/navigation";
+
 
 const page = () => {
+const router  = useRouter();
     return (
         <div>
-            <h2>div</h2>
+           <button className="btn btn-primary" onClick={() => { router.push('/')} }> Create </button>
         </div>
     );
 };
