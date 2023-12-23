@@ -16,10 +16,16 @@ export async function PUT(req: NextRequest, params: { id: number }) {
         return NextResponse.json({ error: "User not found" }, { status: 404 });
 
     return NextResponse.json({ id: 3, name: body.name });
-    // if invalid, return NextResponse.json({error: "Invalid body"}, {status: 400})
-   // fetch the user from database
-    // if not found, return NextResponse.json({error: "User not found"}, {status: 404})
-    // update the user
-    // 
    
+}
+
+export async function DELETE(req: NextRequest, params: { id: number }) {
+    // fetch user from database
+    if (params.id > 10)
+        return NextResponse.json({ error: "User not found" }, { status: 404 }); 
+
+    // if not found, return NextResponse.json({error: "User not found"}, {status: 404})
+    // delete user from database
+    return NextResponse.json({ message: "User deleted successfully" });
+    
 }
