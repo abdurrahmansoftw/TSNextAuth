@@ -1,13 +1,13 @@
 import Link from "next/link";
 import ProductCard from "./components/ProductCard";
-import UsersPage from "./users/page";
 
 export default function Home() {
   return (
     <main>
-      <Link href='/users'>Users</Link>
-      <ProductCard />
-      <UsersPage />
+      <h1>Next.js + TypeScript</h1>
+      <Link href="/about">
+        practice
+      </Link>
     </main>
   )
 }
