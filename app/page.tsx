@@ -1,19 +1,7 @@
-import { getServerSession } from "next-auth";
-import Link from "next/link";
-import { authOptions } from "./api/auth/[...nextauth]/route";
-import ProductCard from "./components/ProductCard";
+import Image from "next/image";
 
 export default async function Home() {
- const session =  await getServerSession(authOptions);
-  return (
-    <main>
-      <h1>hello {session && <span>
-        {session.user!.name}
-        </span>} </h1>
-      <Link href="/about">
-        practice
-      </Link>
-      <ProductCard />
-    </main>
-  )
+  return <div>
+    <Image src='https://bit.ly/react-cover'  fill alt='coffer' className="object-cover" sizes="(max-width: 480px), 100vw, (max-width: 768px) 50vw, 33w " />
+  </div>;
 }
