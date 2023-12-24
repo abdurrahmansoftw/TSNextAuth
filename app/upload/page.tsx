@@ -14,9 +14,17 @@ const UploadPage = () => {
         {publicId && <CldImage src={publicId} height={270} width={180} alt='img' />}
 
             <CldUploadWidget 
-             uploadPreset='enijs2wf'
-            onUpload={(result) => {
-                if (result.event === 'success') return
+            uploadPreset='enijs2wf'
+            
+            options={{
+                sources: ['local'],
+                multiple: false,
+                maxFiles: 5,
+               
+            }}
+
+            onUpload={(result, ) => {
+                if (result.event !== 'success') return
                 const info = result.info as CloudinaryUploadResult;
                 setPublicId(info.public_id);
             }}
