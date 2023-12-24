@@ -1,10 +1,17 @@
+import prisma from "@/prisma/client";
 import { NextRequest, NextResponse } from "next/server";
 import scheme from '../schema';
 
-export function GET(req: NextRequest, params: { id: number }) {
-    if (params.id > 10)
+export async function GET(req: NextRequest, params: { id: number }) {
+    const user = await prisma.user.findMany({
+        where: {
+            id: params.id
+        }
+    })
+
+    if (!user)
         return NextResponse.json({ error: "User not found" }, { status: 404 });
-    return NextResponse.json({ id: params.id, name: "aakid Doe" });
+    return NextResponse.json(user);
 }
 
 export async function PUT(req: NextRequest, params: { id: number }) {
