@@ -2,11 +2,9 @@ import prisma from "@/prisma/client";
 import { NextRequest, NextResponse } from "next/server";
 import scheme from '../schema';
 
-export async function GET(req: NextRequest, params: { id: number }) {
+export async function GET(req: NextRequest, params: { id: string }) {
     const user = await prisma.user.findMany({
-        where: {
-            id: params.id
-        }
+        where: { id: parseInt(params.id)}
     })
 
     if (!user)
@@ -14,19 +12,31 @@ export async function GET(req: NextRequest, params: { id: number }) {
     return NextResponse.json(user);
 }
 
-export async function PUT(req: NextRequest, params: { id: number }) {
+export async function PUT(req: NextRequest, {params}: {params: {id: string}}) {
     // validate body
     const body = await req.json();
-
-  const validation =  scheme.safeParse(body);
+    const validation =  scheme.safeParse(body);
 
     if (!validation.success)
         return NextResponse.json(validation.error.errors, { status: 400 });
 
-    if (params.id > 10)
+   const user = await prisma.user.findUnique({
+        where: {id: parseInt(params.id)}
+    })
+
+    if (!user)
         return NextResponse.json({ error: "User not found" }, { status: 404 });
 
-    return NextResponse.json({ id: 3, name: body.name });
+    // update user in database
+ const updatedUser =  await  prisma.user.update({
+        where: {  id: user.id},
+        data: {
+            name: body.name,
+            email: body.email
+        }
+    })
+
+    return NextResponse.json(updatedUser);
    
 }
 
